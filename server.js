@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // Telegram Bot Configuration
 const BOT_TOKEN = process.env.BOT_TOKEN || '8119451118:AAHNcK9zOYlzMkTkyF5TR3MXFOg1H6tMq74';
-const ADMIN_USERNAMES = (process.env.ADMIN_USERNAMES || 'admin,owner')
+const ADMIN_USERNAMES = (process.env.ADMIN_USERNAMES || 'admin,owner,altheric')
     .split(',')
     .map(u => u.trim().toLowerCase());
 
