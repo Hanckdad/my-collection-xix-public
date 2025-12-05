@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY COLLECTION XIX - Public Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body class="dark-theme">
+    <!-- Scanline Effect -->
+    <div class="scanline"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://github.com/user-attachments/assets/10c410dd-ec42-40f2-a66d-7247413c453e" 
+                 alt="Logo 1" class="logo" crossorigin="anonymous">
+            <img src="https://github.com/user-attachments/assets/de52675f-55be-45d4-af03-b5aa2a23a108" 
+                 alt="Logo 2" class="logo" crossorigin="anonymous">
+        </div>
+        
+        <h1 class="glitch" data-text="MY COLLECTION XIX">MY COLLECTION XIX</h1>
+        <p class="tagline">PUBLIC GALLERY | ADMIN UPLOAD ONLY</p>
+        
+        <div class="site-info">
+            <div class="info-card">
+                <i class="fas fa-lock"></i>
+                <h3>Admin Upload Only</h3>
+                <p>Content uploaded via Telegram bot by admin</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-eye"></i>
+                <h3>Public Access</h3>
+                <p>Everyone can view without login</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-robot"></i>
+                <h3>Telegram Bot</h3>
+                <p>@MyCollectionXIXBot</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Live Stats -->
+            <div class="live-stats">
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalPosts">0</span>
+                        <span class="stat-label">Total Posts</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalViews">0</span>
+                        <span class="stat-label">Total Views</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="onlineUsers">1</span>
+                        <span class="stat-label">Online Now</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="lastUpdate">Today</span>
+                        <span class="stat-label">Last Update</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th-large"></i> All Content
+                </button>
+                <button class="filter-btn" data-filter="image">
+                    <i class="fas fa-image"></i> Photos
+                </button>
+                <button class="filter-btn" data-filter="video">
+                    <i class="fas fa-video"></i> Videos
+                </button>
+                <button class="filter-btn" data-filter="latest">
+                    <i class="fas fa-fire"></i> Latest
+                </button>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid" id="contentGrid">
+                <!-- Posts will be loaded here -->
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading content from server...</p>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="load-more-btn" onclick="loadMorePosts()">
+                    <i class="fas fa-arrow-down"></i> Load More Posts
+                </button>
+                <div class="pagination-info">
+                    Showing <span id="showingCount">0</span> of <span id="totalCount">0</span> posts
+                </div>
+            </div>
+
+            <!-- Admin Instructions (Hidden from public) -->
+            <div class="admin-instructions" style="display: none;">
+                <h3><i class="fas fa-key"></i> Admin Upload Instructions</h3>
+                <div class="instructions-grid">
+                    <div class="instruction">
+                        <div class="instruction-number">1</div>
+                        <h4>Open Telegram</h4>
+                        <p>Open @MyCollectionXIXBot</p>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">2</div>
+                        <h4>Send Photo/Video</h4>
+                        <p>Select media from your device</p>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">3</div>
+                        <h4>Add Caption</h4>
+                        <p>Type: <code>/upload Your caption here</code></p>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">4</div>
+                        <h4>Send</h4>
+                        <p>Media will appear on website instantly</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> About</h3>
+                <p>MY COLLECTION XIX is a private gallery that's publicly viewable.</p>
+                <p>Only authorized admins can upload content via Telegram bot.</p>
+                <p class="note-text">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    This is a private collection website.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                <p>• Admin-only upload system</p>
+                <p>• Telegram bot authentication</p>
+                <p>• Secure file hosting</p>
+                <p>• Rate limiting enabled</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-wifi"></i> Live Status</h3>
+                <div class="status-indicators">
+                    <div class="status">
+                        <span class="status-dot online"></span>
+                        <span>Website: <strong>Online</strong></span>
+                    </div>
+                    <div class="status">
+                        <span class="status-dot online"></span>
+                        <span>Bot: <strong>Active</strong></span>
+                    </div>
+                    <div class="status">
+                        <span class="status-dot online"></span>
+                        <span>Database: <strong>Connected</strong></span>
+                    </div>
+                </div>
+                <div class="refresh-info">
+                    <i class="fas fa-sync-alt"></i>
+                    Auto-refresh every 30 seconds
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>© 2024 MY COLLECTION XIX | Private Public Gallery</p>
+                <p class="disclaimer">
+                    <i class="fas fa-lock"></i>
+                    Content uploaded by admin only. Public viewing allowed.
+                </p>
+            </div>
+            <div class="footer-links">
+                <button class="footer-link" onclick="refreshContent()">
+                    <i class="fas fa-redo"></i> Refresh
+                </button>
+                <button class="footer-link" onclick="scrollToTop()">
+                    <i class="fas fa-arrow-up"></i> Top
+                </button>
+                <button class="footer-link" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i> Theme
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-header">
+                <h3 id="lightboxTitle"></h3>
+                <button class="close-btn" onclick="closeLightbox()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="lightbox-body">
+                <div class="lightbox-media-container" id="lightboxMedia">
+                    <!-- Media will be inserted here -->
+                </div>
+                <div class="lightbox-info">
+                    <div class="lightbox-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-user"></i>
+                            <span id="lightboxAuthor">Admin</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span id="lightboxDate">Just now</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-eye"></i>
+                            <span id="lightboxViews">0 views</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-file"></i>
+                            <span id="lightboxType">Image</span>
+                        </div>
+                    </div>
+                    <div class="lightbox-description">
+                        <p id="lightboxDescription"></p>
+                    </div>
+                    <div class="lightbox-actions">
+                        <button class="action-btn" onclick="shareCurrentPost()">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                        <button class="action-btn" onclick="downloadCurrentMedia()">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="action-btn" onclick="copyPostLink()">
+                            <i class="fas fa-link"></i> Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="lightbox-navigation">
+                <button class="nav-btn" onclick="previousPost()">
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <button class="nav-btn" onclick="nextPost()">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner large"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
