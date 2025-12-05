@@ -1,0 +1,33 @@
+[build]
+  command = "npm install"
+  publish = "public"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/webhook"
+  to = "/.netlify/functions/bot"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  framework = "#static"
+  targetPort = 3000
+  port = 8888
+
+[functions]
+  node_bundler = "esbuild"
+
+[build.environment]
+  NODE_VERSION = "18"
+  BOT_TOKEN = "8119451118:AAHNcK9zOYlzMkTkyF5TR3MXFOg1H6tMq74"
+  ADMIN_USERNAMES = "admin,owner,authorized"
+  WEBSITE_URL = "https://your-site.netlify.app"
