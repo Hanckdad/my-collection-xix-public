@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxDuration": 30
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/webhook",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ],
+  "env": {
+    "BOT_TOKEN": "8119451118:AAHNcK9zOYlzMkTkyF5TR3MXFOg1H6tMq74",
+    "ADMIN_USERNAMES": "admin,owner,authorized",
+    "NODE_ENV": "production",
+    "WEBSITE_URL": "https://my-collection-xix.vercel.app"
+  }
+}
