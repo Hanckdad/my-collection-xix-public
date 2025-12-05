@@ -25,7 +25,7 @@
   ],
   "env": {
     "BOT_TOKEN": "8119451118:AAHNcK9zOYlzMkTkyF5TR3MXFOg1H6tMq74",
-    "ADMIN_USERNAMES": "admin,owner,authorized",
+    "ADMIN_USERNAMES": "admin,owner,altheric",
     "NODE_ENV": "production",
     "WEBSITE_URL": "https://my-collection-xix.vercel.app"
   }
